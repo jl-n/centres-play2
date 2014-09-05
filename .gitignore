@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 *.log
 tmp
 dump
@@ -36,3 +37,4 @@ target
 
 # Play
 logs
+.DS_Store

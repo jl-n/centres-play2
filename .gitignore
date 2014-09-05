@@ -1,0 +1,38 @@
+*.log
+tmp
+dump
+.history
+/*.iml
+/out
+.scala_dependencies
+project/boot
+project/plugins/target
+RUNNING_PID
+
+The cleaned version looks like this:
+
+syntax: glob
+
+# general
+*~
+
+# Eclipse
+.settings
+.cache
+.project
+.classpath
+bin
+
+# IDEA
+/.idea
+/.idea_modules
+
+# SBT
+dist
+project/project
+project/target
+target
+.target
+
+# Play
+logs

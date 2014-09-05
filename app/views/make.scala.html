@@ -1,0 +1,79 @@
+
+@main("Centres") {
+
+
+<!-- *****************************************************************************************************************
+	 BLUE WRAP
+	 ***************************************************************************************************************** -->
+<div id="blue">
+    <div class="container">
+        <div class="row">
+            <h3>Make a Map</h3>
+        </div><!-- /row -->
+    </div> <!-- /container -->
+</div><!-- /blue -->
+
+<!-- *****************************************************************************************************************
+ TITLE & CONTENT
+ ***************************************************************************************************************** -->
+
+<div class="container mt">
+    <div class="row">
+        <div class="col-lg-10 col-lg-offset-1 centered">
+
+            <img data-bind="attr: {src: getURL}" />
+
+        </div>
+
+
+
+        <div class="col-lg-4 col-lg-offset-4 spacing">
+            <div class="spacing"></div>
+            <h4>Wheres Your Centre?</h4>
+            <div class="hline"></div>
+            <p><b>Longitude:</b>  <input type="text" data-bind="value: longitude"/></p>
+            <p><b>Latitude:</b>  <input type="text" data-bind="value: latitude"/></p>
+            <p><b>Style:</b>  <input type="text" data-bind="value: style"/></p>
+            <button type="button" class="btn btn-primary" data-bind="click: generateMap">Draw</button>
+        </div>
+
+    </div><! --/row -->
+</div><! --/container -->
+
+
+<script src="@routes.Assets.at("javascripts/knockout-2.3.0.js")" type="text/javascript"></script>
+<script>
+
+
+    function MapModel() {
+        var self = this;
+        self.longitude = ko.observable(0);
+        self.latitude = ko.observable(0);
+        self.style = ko.observable("orange")
+
+        self.setLongitude = ko.observable(0);
+        self.setLatitude = ko.observable(0);
+        self.setStyle = ko.observable("orange");
+
+
+        self.getURL = ko.computed(function(){
+            return "/maps/" + self.setLongitude() + "/" + self.setLatitude() + "/" + self.setStyle();
+
+        });
+
+        self.generateMap = function(){
+            self.setLongitude(self.longitude());
+            self.setLatitude(self.latitude());
+            self.setStyle(self.style());
+
+        }
+
+
+
+    }
+
+    ko.applyBindings(new MapModel());
+
+</script>
+
+}

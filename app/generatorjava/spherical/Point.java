@@ -1,4 +1,4 @@
-package generator.spherical;
+package generatorjava.spherical;
 
 /**
  * Created with IntelliJ IDEA.

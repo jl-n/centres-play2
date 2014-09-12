@@ -1,4 +1,4 @@
-package generator;
+package generatorjava;
 
 public class Scale {
     int xDisplayAdjust;

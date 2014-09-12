@@ -1,4 +1,4 @@
-package generator;
+package generatorjava;
 
 public class TiltTranslationScratchpad {
     final public double[] from3D;

@@ -1,6 +1,6 @@
-package generator;
+package generatorjava;
 
-import generator.projections.ProjectionBase;
+import generatorjava.projections.ProjectionBase;
 
 import java.awt.geom.Point2D;
 

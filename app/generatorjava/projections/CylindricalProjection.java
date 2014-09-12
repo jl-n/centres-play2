@@ -1,4 +1,4 @@
-package generator.projections;
+package generatorjava.projections;
 
 /**
  * Created with IntelliJ IDEA.

@@ -1,14 +1,10 @@
-package generator.spherical;
+package generatorjava.spherical;
 
-import generator.*;
+import generatorjava.*;
 import play.Logger;
-import play.api.Logger$;
 
 import java.awt.*;
-import java.awt.geom.Arc2D;
 import java.awt.geom.Point2D;
-import java.io.Console;
-import java.util.logging.ConsoleHandler;
 
 /**
  * Created by julian on 04/09/2014.

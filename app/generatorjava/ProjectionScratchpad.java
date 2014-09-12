@@ -1,4 +1,4 @@
-package generator;
+package generatorjava;
 
 import java.awt.geom.Point2D;
 

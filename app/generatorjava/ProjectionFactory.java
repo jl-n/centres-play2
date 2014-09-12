@@ -1,8 +1,8 @@
-package generator;
+package generatorjava;
 
-import generator.projections.Ellipsoid;
-import generator.projections.MercatorProjection;
-import generator.projections.ProjectionBase;
+import generatorjava.projections.Ellipsoid;
+import generatorjava.projections.MercatorProjection;
+import generatorjava.projections.ProjectionBase;
 
 public class ProjectionFactory {
     public static Projection getCenteredProjection(MapConfiguration mapConfiguration, double projectionLongitude, double projectionLatitude){

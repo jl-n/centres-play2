@@ -1,18 +1,11 @@
-package generator.spherical;
-
-import generator.MapConfiguration;
+package generatorjava.spherical;
 
 import java.awt.*;
 
 /**
- * Created with IntelliJ IDEA.
- * User: matt
- * Date: 03/09/2013
- * Time: 14:47
- * To change this template use File | Settings | File Templates.
+ * Created by julian on 04/09/2014.
  */
-public class GraticuleConfiguration {
-
+public class RadialGraticuleConfiguration {
     int maxLat = 90;
     int minLat = -90;
     int maxLon = 180;
@@ -22,7 +15,7 @@ public class GraticuleConfiguration {
 
 
 
-    public GraticuleConfiguration(int maxLat, int minLat, int maxLon, int minLon, int latitudeStep, int longitudeStep, int smoothFactor) {
+    public RadialGraticuleConfiguration(int maxLat, int minLat, int maxLon, int minLon, int latitudeStep, int longitudeStep, int smoothFactor) {
         this.maxLat = maxLat;
         this.minLat = minLat;
         this.maxLon = maxLon;
@@ -41,5 +34,6 @@ public class GraticuleConfiguration {
     public final int lonStep = longitudeStep * 60 * 60;
     public int smoothFactor = 5;
 
-    public Color lineColor = Color.RED;
+    public Color lineColor = Color.BLACK;
 }
+

@@ -1,7 +1,6 @@
-package generator;
+package generatorjava;
 
-import generator.spherical.*;
-import play.Play;
+import generatorjava.spherical.*;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -114,11 +113,11 @@ public class DrawMap {
 
         public File getDatFile(){
 
-            return new File("app/generator/MapData/" + dataFile + "_DAT.LE");
+            return new File("app/generatorjava/MapData/" + dataFile + "_DAT.LE");
         }
 
         public File getIndexFile(){
-            return new File("app/generator/MapData/" + dataFile + "_IND.LE");
+            return new File("app/generatorjava/MapData/" + dataFile + "_IND.LE");
         }
     }
 }

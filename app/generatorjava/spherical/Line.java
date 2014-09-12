@@ -1,6 +1,6 @@
-package generator.spherical;
+package generatorjava.spherical;
 
-import generator.*;
+import generatorjava.*;
 
 import java.awt.*;
 import java.awt.geom.Point2D;

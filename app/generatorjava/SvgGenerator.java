@@ -1,6 +1,6 @@
-package generator;
+package generatorjava;
 
-import generator.spherical.Draw;
+import generatorjava.spherical.Draw;
 import org.apache.batik.dom.svg.SVGDOMImplementation;
 import org.apache.batik.svggen.SVGGraphics2D;
 import org.w3c.dom.DOMImplementation;

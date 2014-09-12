@@ -5,7 +5,7 @@ import java.io.{ByteArrayInputStream, ByteArrayOutputStream}
 import javax.imageio.ImageIO
 import javax.imageio.stream.ImageInputStream
 
-import generator.{MapElementStyle, DrawMap}
+import generatorjava.{MapElementStyle, DrawMap}
 import play.api._
 import play.api.http.Writeable
 import play.api.mvc._

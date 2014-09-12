@@ -1,6 +1,5 @@
-package generator.projections;
+package generatorjava.projections;
 
-import java.awt.*;
 import java.awt.geom.*;
 
 // The superclass for all map projections

@@ -1,8 +1,8 @@
-package generator.spherical;
+package generatorjava.spherical;
 
-import generator.MapElementStyle;
-import generator.Projection;
-import generator.Scale;
+import generatorjava.MapElementStyle;
+import generatorjava.Projection;
+import generatorjava.Scale;
 
 import java.awt.*;
 

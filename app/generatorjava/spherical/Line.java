@@ -42,6 +42,9 @@ public class Line {
     private static final boolean DO_NOT_FILL = false;
 
     public void render(Graphics2D display, Projection projection, int minX, int maxX, int minY, int maxY, Scale scale, int rand, MapElementStyle style) {
+
+//        final String hello = generator.Shape.name();
+//        generator.Shape.render(points);
         ProjectionScratchpad scratchpad = new ProjectionScratchpad();
 
         if (visible(projection, minimumLongitude, maximumLongitude, minimumLatitude, maximumLatitude, scratchpad)) {

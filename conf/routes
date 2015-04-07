@@ -5,9 +5,10 @@
 
 
 # Home page
-GET     /                           controllers.Application.index
-GET     /maps/:longitude/:latitude/:style  controllers.Application.drawMap(longitude:Double, latitude:Double, style:String)
-GET     /make                       controllers.Application.make
+GET        /                                        controllers.Application.index
+GET         /coordinates/:longitude/:latitude       controllers.Application.translate(centreLongitudeMap:Double, centreLatitudeMap:Double)
+GET        /maps/:longitude/:latitude/:style        controllers.Application.drawMap(longitude:Double, latitude:Double, style:String)
+GET        /make                                    controllers.Application.make
 
 # Map static resources from the /public folder to the /assets URL path
-GET     /assets/*file               controllers.Assets.at(path="/public", file)
+GET        /assets/*file                            controllers.Assets.at(path="/public", file)

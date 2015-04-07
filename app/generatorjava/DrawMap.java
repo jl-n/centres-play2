@@ -86,8 +86,8 @@ public class DrawMap {
 
         final List<Draw> mapElements = new ArrayList<Draw>();
         mapElements.add(map);
-        //mapElements.add(graticule); //Comment out to remove Lat Long on rendered map
-        mapElements.add(radialgraticule);
+        mapElements.add(graticule); //Comment out to remove Lat Long on rendered map
+        //mapElements.add(radialgraticule);
 
         Projection projection = ProjectionFactory.getCenteredProjection(mapConfiguration, longitudeCenter, latitudeCenter);
 

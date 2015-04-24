@@ -5,13 +5,14 @@ import java.io.ByteArrayOutputStream
 import javax.imageio.ImageIO
 
 import controllers.Application._
-import generatorjava.{DrawMap, MapElementStyle}
+import generatorjava.{Coordinates, TiltTranslation, DrawMap, MapElementStyle}
 import play.api.Logger
 
 /**
  * Created by julian on 07/04/2015.
  */
-object GeneratedMap {
+object Response {
+
   def serveImage(longitude: Double, latitude: Double, styleSelect: String) = {
     val styles :Map[String, MapElementStyle] =  Map(
       "bright" -> new MapElementStyle("#FFC907" , "#FFC907", "#4789FF",   "#4789FF", "#000000"),
@@ -37,5 +38,15 @@ object GeneratedMap {
     val baos: ByteArrayOutputStream = new ByteArrayOutputStream()
     ImageIO.write(image, "png", baos)
     Ok(baos.toByteArray).as("image/png")
+  }
+
+  def serveJson(mapCenter: Coordinate, location: Coordinate) = {
+    ???
+  }
+
+  def translate(mapCenter: Coordinate, location: Coordinate) = {
+    val tilt = new TiltTranslation(mapCenter.longitude, mapCenter.latitude)
+    val coordinates = new Coordinates(location.longitude, location.latitude)
+    //tilt.translate(coordinates, new TiltTranslation())
   }
 }

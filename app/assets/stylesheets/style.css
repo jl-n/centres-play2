@@ -38,7 +38,8 @@ html, body {
         top: 0;
         right: 0;
         height: 100%;
-        width: 4rem; }
+        width: 4rem;
+        background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.8)), to(rgba(0, 0, 0, 0.2)), color-stop(0.5, #333333)); }
       html .map .search input, html .map .search .search-completions, body .map .search input, body .map .search .search-completions {
         text-transform: lowercase;
         background-color: transparent;

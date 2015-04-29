@@ -33,26 +33,44 @@ var Header = React.createClass({
 
 var Search = React.createClass({
     getInitialState: function(){
-        return {processing: false, userInput: "", coordinates: [0,0]}
+        return {processing: false, suggestion: "", coordinates: [0,0]}
+    },
+    componentDidMount: function(){
+        var self = this;
+
+        React.findDOMNode(this.refs.searchInput).focus();
+        React.findDOMNode(this.refs.searchInput).spellcheck = false; //Stop annoying red underline due to all lowercase chars forced by css
+
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(showPosition);
+        }
+        function showPosition(position) {
+            self.setState({processing: false, suggestion: "Your current location", coordinates: [position.coords.latitude, position.coords.longitude]})
+            self.props.coordCallback(self.state.coordinates[0], self.state.coordinates[1]); //Pass the long and lat of location to parent
+        }
     },
     handleClick: function(){
-        this.props.coordCallback(this.state.coordinates[0], this.state.coordinates[1]);
-        this.geocode(this.state.userInput);
-        this.state.processing === true ? this.setState({processing: false, userInput: "", coordinates: this.state.coordinates}) : this.setState({processing: true, userInput: "", coordinates: this.state.coordinates});
+        if(this.state.suggestion !== "" && this.state.suggestion !== null) {
+            this.geocode(this.state.suggestion); //Geocode the users input
+            //Toggle arrow button
+            this.state.processing === true ? this.setState({processing: false, suggestion: "", coordinates: this.state.coordinates}) : this.setState({processing: true, suggestion: "", coordinates: this.state.coordinates});
+        }
     },
     handleInput: function(){
         var input = React.findDOMNode(this.refs.searchInput).value;
-        this.setState({processing: false, userInput: input, coordinates: this.state.coordinates})
+        this.setState({processing: false, suggestion: input, coordinates: this.state.coordinates})
     },
     geocode: function(location) {
         var self = this;
+        var input = React.findDOMNode(self.refs.searchInput).value;
 
         $.ajax({
             url : 'http://api.opencagedata.com/geocode/v1/json?q='+location+'&key=8aef2700defca0c5f5cd7918916818e2&limit=1',
             type : 'GET',
             dataType:'json',
             success : function(data) {
-                self.setState({processing: false, userInput: data.results[0].formatted, coordinates: [data.results[0].geometry.lng, data.results[0].geometry.lat]});
+                self.setState({processing: false, suggestion: input+"     -"+data.results[0].formatted, coordinates: [data.results[0].geometry.lng, data.results[0].geometry.lat]});
+                self.props.coordCallback(self.state.coordinates[0], self.state.coordinates[1]); //Pass the long and lat of location to parent
             },
             error : function(request,error)
             {
@@ -62,16 +80,13 @@ var Search = React.createClass({
     },
     render: function() {
         var css = "";
-
         this.state.processing === true ? css = "menu btn10 wait" : css = "menu btn10 open";
-
-        var userInput = this.state.userInput;
+        var suggestion = this.state.suggestion;
 
         return (
             <div className="search">
-                <input className="search-completions" value={userInput}/>
-                <input className="searchInput" onChange={this.handleInput} ref="searchInput" type="text"/>
-
+                <input className="search-completions" value={suggestion} readOnly/>
+                <input className="searchInput" onChange={this.handleInput} ref="searchInput" type="text" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
                 <div onClick={this.handleClick} className="search-arrow">
                     <div className={css} data-menu="10">
                         <div className="icon"></div>
@@ -87,19 +102,10 @@ var Map = React.createClass({
     getInitialState: function () {
         return {lat: 0, lon: 0}
     },
-    handleInput: function(){
-        //Takes the current input
-        //Geocodes it
-        //sets state to this location
-        //Displays the first result as faded text in addition to what the user has already written
-        var input = "london" //get raw input
-
-    },
     handleQuery: function(lat, lon){
         var self = this;
         self.setState({lat: lat, lon: lon});
     },
-
     render: function () {
         var image = "http://192.168.1.10:9000/maps/"+this.state.lat+"/"+this.state.lon+"/orange"
 

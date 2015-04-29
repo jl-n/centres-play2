@@ -18,8 +18,9 @@ import play.api.libs.json.Json
 
 object Application extends Controller {
 
-  def index = Action {
-    Ok(views.html.make()) //Loads initia page, react client from now on communicates via ajax
+  def index = Action { request =>
+    Console.print(request.body.asText)
+    Ok(views.html.index() ) //Loads initial page, react client from now on communicates via ajax
   }
 
   def make = Action {

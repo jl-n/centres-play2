@@ -13,26 +13,71 @@ var Page = React.createClass({
         )
     }
 });
+
 var Header = React.createClass({
     render: function () {
         return (
             <div className="header">
-                <img class="header-logo"/>
-                <ul class="header-links">
-                    <li>About</li>
-                    <li>API</li>
-                    <li>Contact</li>
-                </ul>
+                <div className="header-wrapper">
+                    <img className="header-logo" src="http://192.168.1.10:9000/assets/images/logo.png"/>
+                    <ul className="header-links">
+                        <li><a>about</a></li>
+                        <li><a>API</a></li>
+                        <li><a>contact</a></li>
+                    </ul>
+                </div>
             </div>
         )
     }
 });
 
-
 var Search = React.createClass({
+    getInitialState: function(){
+        return {processing: false, userInput: "", coordinates: [0,0]}
+    },
+    handleClick: function(){
+        this.props.coordCallback(this.state.coordinates[0], this.state.coordinates[1]);
+        this.geocode(this.state.userInput);
+        this.state.processing === true ? this.setState({processing: false, userInput: "", coordinates: this.state.coordinates}) : this.setState({processing: true, userInput: "", coordinates: this.state.coordinates});
+    },
+    handleInput: function(){
+        var input = React.findDOMNode(this.refs.searchInput).value;
+        this.setState({processing: false, userInput: input, coordinates: this.state.coordinates})
+    },
+    geocode: function(location) {
+        var self = this;
+
+        $.ajax({
+            url : 'http://api.opencagedata.com/geocode/v1/json?q='+location+'&key=8aef2700defca0c5f5cd7918916818e2&limit=1',
+            type : 'GET',
+            dataType:'json',
+            success : function(data) {
+                self.setState({processing: false, userInput: data.results[0].formatted, coordinates: [data.results[0].geometry.lng, data.results[0].geometry.lat]});
+            },
+            error : function(request,error)
+            {
+                alert("There was an error processing your request "+JSON.stringify(request));
+            }
+        });
+    },
     render: function() {
+        var css = "";
+
+        this.state.processing === true ? css = "menu btn10 wait" : css = "menu btn10 open";
+
+        var userInput = this.state.userInput;
+
         return (
-            <input />
+            <div className="search">
+                <input className="search-completions" value={userInput}/>
+                <input className="searchInput" onChange={this.handleInput} ref="searchInput" type="text"/>
+
+                <div onClick={this.handleClick} className="search-arrow">
+                    <div className={css} data-menu="10">
+                        <div className="icon"></div>
+                    </div>
+                </div>
+            </div>
         )
     }
 });
@@ -40,7 +85,7 @@ var Search = React.createClass({
 
 var Map = React.createClass({
     getInitialState: function () {
-        return {location: this.props.location}
+        return {lat: 0, lon: 0}
     },
     handleInput: function(){
         //Takes the current input
@@ -50,20 +95,32 @@ var Map = React.createClass({
         var input = "london" //get raw input
 
     },
-    handleQuery: function(){
-        //Queries server for map using coordintes in state
+    handleQuery: function(lat, lon){
+        var self = this;
+        self.setState({lat: lat, lon: lon});
     },
 
     render: function () {
+        var image = "http://192.168.1.10:9000/maps/"+this.state.lat+"/"+this.state.lon+"/orange"
 
         return (
             <div className="map">
-                <Search />
-                <img src="http://192.168.1.10:9000/maps/0/0/green"/>
+                <Search coordCallback={this.handleQuery}/>
+                <img src={image}/>
             </div>
         )
     }
 });
+
+var ItMakesSense = React.createClass({
+    render: function(){
+        return(
+            <div class="it-makes-sense">
+
+            </div>
+        )
+    }
+})
 
 var Footer = React.createClass({
     render: function () {

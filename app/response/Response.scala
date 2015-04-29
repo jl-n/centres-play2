@@ -1,11 +1,12 @@
-package generator
+package response
 
 import java.awt.image.BufferedImage
 import java.io.ByteArrayOutputStream
 import javax.imageio.ImageIO
 
 import controllers.Application._
-import generatorjava.{Coordinates, TiltTranslation, DrawMap, MapElementStyle}
+import generator.Coordinate
+import generatorjava.{Coordinates, DrawMap, MapElementStyle, TiltTranslation}
 import play.api.Logger
 
 /**

@@ -5,8 +5,10 @@ import java.io.{ByteArrayInputStream, ByteArrayOutputStream}
 import javax.imageio.ImageIO
 import javax.imageio.stream.ImageInputStream
 
-import generator.{Response, Coordinate}
+import generator.Coordinate
 import generatorjava.{MapElementStyle, DrawMap}
+import response.Response
+
 //import generator
 import play.api._
 import play.api.http.Writeable

@@ -50,11 +50,14 @@ var Search = React.createClass({
         }
     },
     handleClick: function(){
-        if(this.state.suggestion !== "" && this.state.suggestion !== null) {
+        if(React.findDOMNode(this.refs.searchInput).value !== "" && this.state.suggestion !== null) {
             this.geocode(this.state.suggestion); //Geocode the users input
             //Toggle arrow button
             this.state.processing === true ? this.setState({processing: false, suggestion: "", coordinates: this.state.coordinates}) : this.setState({processing: true, suggestion: "", coordinates: this.state.coordinates});
         }
+    },
+    handleKeyPress: function(e){
+        e.which === 13 ? this.handleClick() : function(){}
     },
     handleInput: function(){
         var input = React.findDOMNode(this.refs.searchInput).value;
@@ -86,8 +89,8 @@ var Search = React.createClass({
         return (
             <div className="search">
                 <input className="search-completions" value={suggestion} readOnly/>
-                <input className="searchInput" onChange={this.handleInput} ref="searchInput" type="text" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
-                <div onClick={this.handleClick} className="search-arrow">
+                <input className="searchInput" onChange={this.handleInput} onKeyPress={this.handleKeyPress} ref="searchInput" type="text" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+                <div onClick={this.handleClick} onKeyPress={this.handleKeyPress} className="search-arrow">
                     <div className={css} data-menu="10">
                         <div className="icon"></div>
                     </div>
@@ -122,7 +125,8 @@ var ItMakesSense = React.createClass({
     render: function(){
         return(
             <div class="it-makes-sense">
-
+                <h2>It Makes Sense</h2>
+                <p></p>
             </div>
         )
     }

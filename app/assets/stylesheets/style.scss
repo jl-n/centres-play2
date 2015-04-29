@@ -55,14 +55,15 @@ html, body {
       }
 
       .search-arrow {
+        box-sizing: border-box;
         position: absolute;
-        top: 0;
-        right: 0;
-        height: 100%;
-        width: 4rem;
+        top: .08rem;
+        right: .05rem;
+        height: 80%;
+        width: 6rem;
         background-image: -webkit-gradient(
-                        linear, left top, left bottom, from(rgba(0,0,0,0.8)),
-                        to(rgba(0,0,0,0.2)), color-stop(.5,#333333)
+                        linear, left 50%, right 50%, from(rgba(255, 255, 255, 0.0)),
+                        to(rgba(255, 255, 255, 1)), color-stop(.7, rgba(255, 255, 255, 1))
         );
       }
 
@@ -105,7 +106,7 @@ $color: #b3e5fc;
   width: 60px;
   height: 60px;
   top: $top;
-  left: $left;
+  right: $left;
 
   transition-duration: 0.5s;
   -webkit-transition-duration: 0.5s;
